@@ -31,8 +31,11 @@ jobs:
 
       - name: Install SDK packages
         run: |
-          yes | sdkmanager --licenses >/dev/null
-          sdkmanager "platform-tools" "platforms;android-37" "build-tools;37.0.0"
+          yes | sdkmanager --licenses >/dev/null || true
+          sdkmanager "platform-tools" "platforms;android-36" "build-tools;36.1.0"
+
+      - name: Fetch patched Miuix Android artifacts
+        run: sh scripts/fetch-miuix-android.sh
 
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4

@@ -8,13 +8,13 @@ plugins {
 
 android {
     namespace = "com.prplegryn.verbo"
-    compileSdk = 37
-    buildToolsVersion = "37.0.0"
+    compileSdk = 36
+    buildToolsVersion = "36.1.0"
 
     defaultConfig {
         applicationId = "com.prplegryn.verbo"
         minSdk = 26
-        targetSdk = 37
+        targetSdk = 36
         versionCode = 1
         versionName = "0.1.0"
     }
@@ -88,9 +88,15 @@ dependencies {
     implementation("org.jetbrains.compose.ui:ui-tooling-preview:1.11.1")
     debugImplementation("org.jetbrains.compose.ui:ui-tooling:1.11.1")
 
-    implementation("top.yukonga.miuix.kmp:miuix-ui-android:0.9.2")
-    implementation("top.yukonga.miuix.kmp:miuix-icons-android:0.9.2")
-    implementation("top.yukonga.miuix.kmp:miuix-preference-android:0.9.2")
+    implementation(files("libs/miuix-core-android-0.9.2.aar"))
+    implementation(files("libs/miuix-shader-android-0.9.2.aar"))
+    implementation(files("libs/miuix-squircle-android-0.9.2.aar"))
+    implementation(files("libs/miuix-ui-android-0.9.2.aar"))
+    implementation(files("libs/miuix-icons-android-0.9.2.aar"))
+    implementation(files("libs/miuix-preference-android-0.9.2.aar"))
+    implementation("org.jetbrains.androidx.navigationevent:navigationevent-compose:1.1.0")
+    implementation("org.jetbrains.compose.material3:material3-window-size-class:1.9.0")
+    implementation("com.materialkolor:material-color-utilities-android:4.1.1")
 
     implementation("com.squareup.okhttp3:okhttp:5.4.0")
     implementation("com.tom-roush:pdfbox-android:2.0.27.0")
