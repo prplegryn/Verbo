@@ -78,7 +78,7 @@ android {
 dependencies {
     implementation("androidx.activity:activity-compose:1.13.0")
     implementation("androidx.activity:activity-ktx:1.13.0")
-    implementation("androidx.core:core-ktx:1.19.0")
+    implementation("androidx.core:core-ktx:1.18.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.10.0")
 
     implementation("org.jetbrains.compose.runtime:runtime:1.11.1")
