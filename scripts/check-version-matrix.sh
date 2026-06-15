@@ -11,9 +11,12 @@ check_contains() {
 }
 
 check_contains build.gradle.kts 'id("com.android.application") version "9.2.1"'
-check_contains build.gradle.kts 'id("org.jetbrains.kotlin.android") version "2.4.0"'
 check_contains build.gradle.kts 'id("org.jetbrains.kotlin.plugin.compose") version "2.4.0"'
 check_contains build.gradle.kts 'id("org.jetbrains.compose") version "1.11.1"'
+if grep -R "org.jetbrains.kotlin.android" build.gradle.kts app/build.gradle.kts >/dev/null; then
+  echo "AGP 9 uses built-in Kotlin; remove org.jetbrains.kotlin.android." >&2
+  exit 1
+fi
 check_contains app/build.gradle.kts 'compileSdk = 36'
 check_contains app/build.gradle.kts 'targetSdk = 36'
 check_contains app/build.gradle.kts 'buildToolsVersion = "36.1.0"'
