@@ -76,7 +76,7 @@ class TranslatedPdfWriter(
 
         fun drawSourcePageTitle(sourcePage: Int) {
             ensureSpace(44f)
-            paint.applyStyle(BlockStyle.PageTitle)
+            applyPaintStyle(paint, BlockStyle.PageTitle)
             drawTextLine("第 $sourcePage 页", LEFT_MARGIN, y, paint)
             y += 28f
         }
@@ -85,7 +85,7 @@ class TranslatedPdfWriter(
             val style = BlockStyle.from(block.type)
             val text = block.text.trim()
             if (text.isBlank()) return
-            paint.applyStyle(style)
+            applyPaintStyle(paint, style)
 
             val availableWidth = PAGE_WIDTH - LEFT_MARGIN - RIGHT_MARGIN - style.extraIndent
             val lines = wrapText(text, paint, availableWidth)
@@ -125,7 +125,7 @@ class TranslatedPdfWriter(
         }
 
         private fun drawRunningHeader() {
-            paint.applyStyle(BlockStyle.Header)
+            applyPaintStyle(paint, BlockStyle.Header)
             drawTextLine(title, LEFT_MARGIN, 30f, paint)
             drawTextLine(pageNumber.toString(), PAGE_WIDTH - RIGHT_MARGIN - paint.measureText(pageNumber.toString()), PAGE_HEIGHT - 28f, paint)
         }
@@ -136,6 +136,12 @@ class TranslatedPdfWriter(
 
         private fun drawTextLine(text: String, x: Float, baseline: Float, paint: Paint) {
             canvas?.drawText(text, x, baseline, paint)
+        }
+
+        private fun applyPaintStyle(paint: Paint, style: BlockStyle) {
+            paint.textSize = style.textSize
+            paint.typeface = style.typeface
+            paint.color = style.color
         }
 
         private fun wrapText(text: String, paint: Paint, width: Float): List<String> {
@@ -201,12 +207,6 @@ class TranslatedPdfWriter(
                 else -> Paragraph
             }
         }
-    }
-
-    private fun Paint.applyStyle(style: BlockStyle) {
-        textSize = style.textSize
-        typeface = style.typeface
-        color = style.color
     }
 
     companion object {
