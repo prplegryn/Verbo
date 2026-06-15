@@ -1,0 +1,2 @@
+-keep class com.tom_roush.** { *; }
+-keep class kotlinx.serialization.** { *; }
